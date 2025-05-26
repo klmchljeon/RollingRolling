@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class M2_AngleManager : MonoBehaviour
 {
-    private List<float> angleList = new List<float>();
-    public IReadOnlyList<float> AngleList => angleList;
+    public List<float> angleList = new List<float>();
+    
 
     float tmp;
 
@@ -14,14 +14,14 @@ public class M2_AngleManager : MonoBehaviour
         tmp = angle;
     }
 
-    void _recordAngle(float angle)
+    void RecordAngleAgain(float angle)
     {
         angleList.Add(angle);
     }
 
     public void RecordAngle()
     {
-        _recordAngle(tmp);
+        RecordAngleAgain(tmp);
     }
 
     public void ClearAngle()

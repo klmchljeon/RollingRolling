@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class M2_Judgement : MonoBehaviour
 {
     public GameObject target;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject aim;
+    public M2_AngleManager angleManager;
+    public M2_MoveAim moveAim;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D other) 
     {
         
     }

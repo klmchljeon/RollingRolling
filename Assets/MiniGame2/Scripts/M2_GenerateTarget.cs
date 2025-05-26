@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -8,6 +10,13 @@ public class M2_GenerateTarget : MonoBehaviour
     
     public GameObject target; // 타겟 오브젝트를 드래그하여 연결합니다.
     public M2_AngleManager angleManager; // 타겟 각도 포인트 스크립트를 드래그하여 연결합니다.
+    public M2_MoveAim moveAim;
+
+    private void Start()
+    {
+        angleManager = GetComponent<M2_AngleManager>();
+    }
+
     float MakeTarget(float exceptAngle)
     {
         float angle = Random.Range(0, 360); // 0도에서 360도 사이의 랜덤 각도를 생성합니다.
@@ -26,13 +35,14 @@ public class M2_GenerateTarget : MonoBehaviour
             else
             {
                 angle = Random.Range(0, 360); // 예외 각도와의 차이가 30도 이하이면 다시 랜덤 각도를 생성합니다.
-                angleManager.SetTmp(angle); // 타겟 각도 포인트를 체크합니다.
+                
             }
-                            
+
         }
        
         // 타겟을 생성할 위치를 랜덤으로 결정합니다.
-        Vector3 randomPosition = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * 2;
+        float rad = angle * Mathf.Deg2Rad;
+        Vector3 randomPosition = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * 2;
 
         // 타겟을 생성합니다.
         GameObject Newtarget = Instantiate(target);
@@ -40,7 +50,10 @@ public class M2_GenerateTarget : MonoBehaviour
         Newtarget.transform.SetParent(transform); // 부모 오브젝트로 설정합니다.
         Newtarget.transform.position = randomPosition;
 
-        
+
+        angleManager.SetTmp(angle); // 타겟 각도 포인트를 체크합니다.
+        angleManager.RecordAngle();
+
         return angle;
         
     }
@@ -58,5 +71,18 @@ public class M2_GenerateTarget : MonoBehaviour
             float tmp = MakeTarget(-1);
             MakeTarget(tmp);
         }
+        
+        
+        if (angleManager.angleList.Count == 2)
+            {
+            float anglediff0 = Mathf.Abs(angleManager.angleList[0] - moveAim.aimangle);
+            float anglediff1 = Mathf.Abs(angleManager.angleList[1] - moveAim.aimangle);
+            float anlgediffm = Mathf.Min(anglediff0, anglediff1);
+            float anlgediffM = Mathf.Max(anglediff0, anglediff1);
+            angleManager.ClearAngle();
+            angleManager.angleList[0] = anlgediffm;
+            angleManager.angleList[1] = anlgediffM;
+            }
+
     }
 }
