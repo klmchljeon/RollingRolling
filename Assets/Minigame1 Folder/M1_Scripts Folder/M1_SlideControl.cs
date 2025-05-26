@@ -5,29 +5,30 @@ using UnityEngine.EventSystems;
 
 public class M1_SlideControl : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public GameObject object1; //기본상태
-    public GameObject object2; // 눌렀을 때
+    public GameObject object1; // 기본 오브젝트
+    public GameObject object2; // 슬라이드 중 오브젝트
+
+    public GroundChecker groundChecker;
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (groundChecker == null || !groundChecker.isGrounded) return;
+
+        object2.transform.position = object1.transform.position;
+        object2.transform.rotation = object1.transform.rotation;
+
         object1.SetActive(false);
         object2.SetActive(true);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (groundChecker == null || groundChecker.isGrounded) return;
+
+        object1.transform.position = object2.transform.position;
+        object1.transform.rotation = object2.transform.rotation;
+
         object1.SetActive(true);
         object2.SetActive(false);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
