@@ -39,14 +39,15 @@ public class M3_MakeCircle : MonoBehaviour
             Vector2 direction = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad)).normalized;//normalized 추가됨
 
             // 거리에 대한 처리
-            float distance = (prevDiameter + diameter) * 0.5f; // 반지름 합 + 여유 거리(0.2f)
+            float distance = (prevDiameter + diameter) * 2.8f; // 코드 수정: 0.5f - > 2.8f, 배수 값 설정에 따른 문제(원 반지름 * 배율)에 맞게 설정
             Vector3 spawnPosition = prevPosition + (Vector3)(direction * distance);
 
             GameObject newcircle = Instantiate(circle);
-            newcircle.transform.position = new Vector3(4, Random.Range(-2.86f, 2.46f), 0);
+            newcircle.transform.position = spawnPosition;
             // 이전 코드: new Vector3(4, Random.Range(-2.86f, 2.46f), 0);
             newcircle.GetComponent<M3_Move>().speed = Random.Range(-2f,2f);
             newcircle.transform.localScale = new Vector3(diameter, diameter, 1f);
+            newcircle.SetActive(true);//이건 GPT 탐색
             timer = 0;
 
             // 이전 원 정보 업데이트
