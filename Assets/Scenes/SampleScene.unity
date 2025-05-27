@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e50d6bed4819f4db775eac0a40dbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +420,8 @@ MonoBehaviour:
   circle: {fileID: 175500385}
   radius: 0
   circleRadius: 0
+  minRadius: 0.1
+  maxRadius: 0.5
   timeDiff: 3
 --- !u!4 &1522366811
 Transform:

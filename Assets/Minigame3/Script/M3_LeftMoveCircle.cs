@@ -14,6 +14,6 @@ public class M3_LeftMoveCircle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
+        //transform.position += Vector3.left * speed * Time.deltaTime;
     }
 }
