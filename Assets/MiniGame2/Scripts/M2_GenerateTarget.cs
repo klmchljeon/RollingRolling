@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class M2_GenerateTarget : MonoBehaviour
@@ -7,20 +7,44 @@ public class M2_GenerateTarget : MonoBehaviour
     public M2_AngleManager angleManager;
     public M2_MoveAim moveAim;
 
+    private int round = 0;  // 라운드 카운터 추가
+
     private void Start()
     {
         angleManager = GetComponent<M2_AngleManager>();
     }
 
-    float MakeTarget(float exceptAngle)
+    float MakeTarget(List<float> existingAngles)
     {
+        float minAngleGap = 30f;
+        float minDistanceFromAim = 30f;
         float angle = Random.Range(0, 360);
+        int safety = 0;
+
         while (true)
         {
-            if (exceptAngle == -1) break;
-            float diff = Mathf.Abs(angle - exceptAngle);
-            float d = Mathf.Min(360 - diff, diff);
-            if (d > 30) break;
+            bool isFarEnough = true;
+
+            if (moveAim != null)
+            {
+                float aimDiff = Mathf.Abs(angle - moveAim.aimangle);
+                float aimDist = Mathf.Min(360 - aimDiff, aimDiff);
+                if (aimDist < minDistanceFromAim)
+                    isFarEnough = false;
+            }
+
+            foreach (float existing in existingAngles)
+            {
+                float diff = Mathf.Abs(angle - existing);
+                float dist = Mathf.Min(360 - diff, diff);
+                if (dist < minAngleGap)
+                {
+                    isFarEnough = false;
+                    break;
+                }
+            }
+
+            if (isFarEnough || safety++ > 100) break;
             angle = Random.Range(0, 360);
         }
 
@@ -31,25 +55,31 @@ public class M2_GenerateTarget : MonoBehaviour
         newTarget.transform.SetParent(transform);
         newTarget.transform.position = pos;
 
-        // ?? 타겟 정보는 AngleManager에 위임
         angleManager.AddTarget(newTarget, angle);
         return angle;
     }
+
 
     public void GeneratingTarget()
     {
         angleManager.ClearTargets();
 
-        int targetNumber = Random.Range(1, 3);
-        if (targetNumber == 1)
-            MakeTarget(-1);
-        else
+        int targetNumber = Random.Range(1, 3); // 1 또는 2개
+        List<float> existingAngles = new List<float>();
+
+        for (int i = 0; i < targetNumber; i++)
         {
-            float tmp = MakeTarget(-1);
-            MakeTarget(tmp);
+            float angle = MakeTarget(existingAngles);
+            existingAngles.Add(angle);
         }
 
-        // 방향성에 따라 정렬 (필요시)
         angleManager.SortTargetsByAimWithDirection(moveAim.aimangle, moveAim.isClockwise);
+
+        // 라운드 증가 및 MoveAim 속도 증가 호출
+        round++;
+        if (moveAim != null)
+        {
+            moveAim.IncreaseSpeedByRound(round);
+        }
     }
 }

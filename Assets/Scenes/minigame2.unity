@@ -566,6 +566,8 @@ MonoBehaviour:
   angleManager: {fileID: 0}
   hitThreshold: 10
   score: 0
+  justFired: 0
+  distanceThreshold: 5
 --- !u!1 &758792624
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +810,8 @@ MonoBehaviour:
   angleManager: {fileID: 758792627}
   hitThreshold: 10
   score: 0
+  justFired: 0
+  distanceThreshold: 5
 --- !u!1 &934952322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,7 +1598,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 830441027}
   radius: 2
-  speed: 50
+  baseSpeed: 50
+  maxSpeed: 200
+  acceleration: 1
   aimangle: 0
   isClockwise: 1
 --- !u!1660057539 &9223372036854775807
