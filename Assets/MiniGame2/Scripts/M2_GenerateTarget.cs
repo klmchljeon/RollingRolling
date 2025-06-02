@@ -1,18 +1,38 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class M2_GenerateTarget : MonoBehaviour
 {
     public GameObject target;
-    public M2_AngleManager angleManager;
+    private M2_AngleManager angleManager;
     public M2_MoveAim moveAim;
 
     private int round = 0;  // 라운드 카운터 추가
 
-    private void Start()
+    private IEnumerator Start()
     {
-        angleManager = GetComponent<M2_AngleManager>();
+        yield return new WaitForEndOfFrame();  // 모든 Start() 호출이 끝난 다음 실행됨
+
+        // 연결 안 됐을 경우 찾기
+        if (angleManager == null) { 
+            angleManager = GetComponent<M2_AngleManager>();
+            Debug.Log(angleManager);
+        }
+        if (moveAim == null)
+            moveAim = FindObjectOfType<M2_MoveAim>();
+
+        if (angleManager == null)// || moveAim == null)
+        {
+            Debug.LogError("angleManager 또는 moveAim을 찾을 수 없습니다.");
+            yield break;
+        }
+
+        GeneratingTarget();
     }
+
+
+
 
     float MakeTarget(List<float> existingAngles)
     {
@@ -62,6 +82,7 @@ public class M2_GenerateTarget : MonoBehaviour
 
     public void GeneratingTarget()
     {
+        Debug.Log($"함수 호출 {gameObject.name}");
         angleManager.ClearTargets();
 
         int targetNumber = Random.Range(1, 3); // 1 또는 2개

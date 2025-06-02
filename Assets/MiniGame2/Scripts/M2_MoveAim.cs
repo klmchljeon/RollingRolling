@@ -9,13 +9,14 @@ public class M2_MoveAim : MonoBehaviour
     public float maxSpeed = 200f;
 
     public float aimangle = 0f;
-    public bool isClockwise = true;
+    public bool isClockwise = false;
 
+    private bool isMoving = true;
     void Update()
     {
-        if (center == null) return;
+        if (!isMoving || center == null) return;
 
-        float direction = isClockwise ? 1f : -1f;
+        float direction = isClockwise ? -1f : 1f;
         aimangle += direction * speed * Time.deltaTime;
         aimangle = (aimangle + 360f) % 360f;
 
@@ -42,5 +43,10 @@ public class M2_MoveAim : MonoBehaviour
     public float GetCurrentAngle()
     {
         return aimangle;
+    }
+
+    public void stopMoving()
+    {
+        isMoving = false;
     }
 }

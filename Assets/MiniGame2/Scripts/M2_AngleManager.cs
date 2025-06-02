@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class M2_AngleManager : MonoBehaviour
@@ -19,8 +18,19 @@ public class M2_AngleManager : MonoBehaviour
     public void SortTargetsByAimWithDirection(float aimAngle, bool clockwise)
     {
         generatedTargets.Sort((a, b) =>
-            a.GetDirectionalAngleDifference(aimAngle, clockwise)
-            .CompareTo(b.GetDirectionalAngleDifference(aimAngle, clockwise)));
+        {
+            float aDiff = a.GetDirectionalAngleDifference(aimAngle, clockwise);
+            float bDiff = b.GetDirectionalAngleDifference(aimAngle, clockwise);
+            return aDiff.CompareTo(bDiff);
+        });
+
+        Debug.Log("정렬된 타겟 목록:");
+        for (int i = 0; i < generatedTargets.Count; i++)
+        {
+            var t = generatedTargets[i];
+            float diff = t.GetDirectionalAngleDifference(aimAngle, clockwise);
+            Debug.Log($"{i + 1}. {t.targetObject.name}, angle={t.angle}, diff={diff:F2}");
+        }
     }
 
     public TargetInfo GetNextTarget(float aimAngle, bool clockwise)
@@ -30,7 +40,6 @@ public class M2_AngleManager : MonoBehaviour
         SortTargetsByAimWithDirection(aimAngle, clockwise);
         return generatedTargets[0];
     }
-
 
     public void PrintAllAngles()
     {
