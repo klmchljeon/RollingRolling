@@ -21,7 +21,7 @@ public class M3_Player_Stand : MonoBehaviour
         float deltaAngle = currentAngle - previousAngle;
         //회전 (변화) 적용
         //원판의 회전값을 기준으로 offset을 회전
-        offset = Quaternion.Euler(0, 0, deltaAngle) * offset;
+        offset = Quaternion.Euler(0, 0, deltaAngle) * offset * 1.0005f;
         transform.position = circle.position + offset;
         // 다음 프레임을 위해 현재 각도 저장
         previousAngle = currentAngle;
