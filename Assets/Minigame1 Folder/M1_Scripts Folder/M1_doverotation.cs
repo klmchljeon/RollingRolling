@@ -14,22 +14,39 @@ public class M1_doverotation : MonoBehaviour
     private float angle1 = 0f;
 
     public float startAngle1 = 0f;
+    public int direction1 = 1; // 얘 관련된놈들이 추가한거임(SetDirection)
+    private Vector3 originalPos1;
+    private Quaternion originalRotation1;
+
+    void Awake()
+    {
+        originalPos1 = transform.position;
+        originalRotation1 = transform.rotation;
+    }
+
+    public void SetDirection1(int dir)
+    {
+        direction1 = dir;
+        if (centerObject1 != null)
+        {
+            if (dir == -1)
+            {
+                Vector3 flipped1 = new Vector3(-originalPos1.x, originalPos1.y, originalPos1.z);
+                transform.position = flipped1;
+                transform.rotation = Quaternion.Euler(0, 0, -originalRotation1.z);
+            }
+            else
+            {
+                transform.position = originalPos1;
+                transform.rotation = originalRotation1;
+            }
+        }
+    }
 
     
     void Start()
     {
-         if (centerObject1 != null)
-        {
-            angle1 = startAngle1 * Mathf.Deg2Rad; // 도-> 라디안 변환
-            float x = centerObject1.position.x + Mathf.Cos(angle1) * orbitRadius1;
-            float y = centerObject1.position.y + Mathf.Sin(angle1) * orbitRadius1;
-
-            transform.position = new Vector3(x, y, transform.position.z);
-            // 시작 위치에서 중심까지의 방향 계산 → 각도 보정
-            Vector3 offset = transform.position - centerObject1.position;
-            angle1 = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-            
-        }
+  
     }
 
     // Update is called once per frame
@@ -38,7 +55,7 @@ public class M1_doverotation : MonoBehaviour
         if (centerObject1 == null)
             return;
 
-        angle1 += orbitSpeed1 * Time.deltaTime;
+        angle1 += orbitSpeed1 * direction1 * Time.deltaTime; //direction1 추가로 곱함
         //if (angle >= 360f) angle -= 360f;
 
         // 라디안으로 변환
