@@ -679,6 +679,9 @@ MonoBehaviour:
   maxRadius: 0.5
   timeDiff: 3
   containerTransform: {fileID: 77845631}
+  player: {fileID: 526847416}
+  playerScript: {fileID: 0}
+  aimController: {fileID: 0}
 --- !u!4 &1522366811
 Transform:
   m_ObjectHideFlags: 0
