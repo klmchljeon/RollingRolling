@@ -1,3 +1,4 @@
+// TargetInfo.cs (순수 개별 타겟 정보만 유지)
 using UnityEngine;
 
 public class TargetInfo
@@ -11,11 +12,18 @@ public class TargetInfo
         this.angle = angle;
     }
 
-    public float GetDirectionalAngleDifference(float aimAngle, bool isClockwise)
+    public float GetDirectionalAngleDifference(float aim, bool isClockwise)
     {
+        float diff = (angle - aim + 360f) % 360f;
+        return isClockwise ? diff : (360f - diff) % 360f;
+    }
+
+    public bool IsInFrontOfAim(float aim, bool isClockwise)
+    {
+        float diff = (angle - aim + 360f) % 360f;
         if (isClockwise)
-            return (angle - aimAngle + 360f) % 360f;
+            return diff > 0f && diff < 180f;
         else
-            return (aimAngle - angle + 360f) % 360f;
+            return diff > 180f && diff < 360f;
     }
 }
