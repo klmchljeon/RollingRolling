@@ -16,10 +16,40 @@ public class M1_stonerotation : MonoBehaviour
 
     public float startAngle = 0f;
 
+    public int direction = 1;
+
+    private Vector3 originalPos;
+    private Quaternion originalRotation;
+
+    void Awake()
+    {
+        originalPos = transform.position;
+        originalRotation = transform.rotation;
+    }
+
+    public void SetDirection(int dir)
+    {
+        direction = dir;
+        if (centerObject != null)
+        {
+            if (dir == -1)
+            {
+                Vector3 flipped = new Vector3(-originalPos.x, originalPos.y, originalPos.z);
+                transform.position = flipped;
+                transform.rotation = Quaternion.Euler(0, 0, -originalRotation.z);
+            }
+            else
+            {
+                transform.position = originalPos;
+                transform.rotation = originalRotation;
+            }
+        }
+    }
+
     
     void Start()
     {
-         if (centerObject != null)
+         /*if (centerObject != null)
         {
             angle = startAngle * Mathf.Deg2Rad; // 도-> 라디안 변환
             float x = centerObject.position.x + Mathf.Cos(angle) * orbitRadius;
@@ -30,7 +60,7 @@ public class M1_stonerotation : MonoBehaviour
             Vector3 offset = transform.position - centerObject.position;
             angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
             
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -39,7 +69,7 @@ public class M1_stonerotation : MonoBehaviour
         if (centerObject == null)
             return;
 
-        angle += orbitSpeed * Time.deltaTime;
+        angle += orbitSpeed * direction * Time.deltaTime; //direction 추가로 곱함
 
         float x = centerObject.position.x + Mathf.Cos(angle) * orbitRadius;
         float y = centerObject.position.y + Mathf.Sin(angle) * orbitRadius;

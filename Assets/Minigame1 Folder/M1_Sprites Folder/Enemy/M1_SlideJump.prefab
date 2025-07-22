@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7540688290247055820}
   m_Layer: 0
   m_Name: M1_SlideJump
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,6 +135,7 @@ MonoBehaviour:
   orbitRadius1: 7.5
   orbitSpeed1: 1
   startAngle1: 120
+  direction1: 1
 --- !u!70 &6993337236952421452
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -167,8 +168,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.0331569, y: 1.7415823}
-  m_Size: {x: 5.547118, y: 4.7001143}
+  m_Offset: {x: 1.6096529, y: 1.9167874}
+  m_Size: {x: 4.70011, y: 4.349675}
   m_Direction: 1
 --- !u!1 &8902233714212117334
 GameObject:
@@ -182,6 +183,8 @@ GameObject:
   - component: {fileID: 989900885619325782}
   - component: {fileID: 6450689345333666085}
   - component: {fileID: 2520201238531794734}
+  - component: {fileID: 8292070382364018890}
+  - component: {fileID: 4572793702362939180}
   m_Layer: 0
   m_Name: M1_stone(SJ)
   m_TagString: Untagged
@@ -272,6 +275,7 @@ MonoBehaviour:
   orbitRadius: 7
   orbitSpeed: 1
   startAngle: 119.3
+  direction: 1
 --- !u!70 &2520201238531794734
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -304,6 +308,68 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.035056114, y: -0.5514111}
-  m_Size: {x: 4.012176, y: 2.4397283}
+  m_Offset: {x: 0.005638054, y: -0.7574309}
+  m_Size: {x: 3.953332, y: 2.027677}
   m_Direction: 1
+--- !u!70 &8292070382364018890
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8902233714212117334}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.25741422, y: 0.57135355}
+  m_Size: {x: 2.424051, y: 0.54265255}
+  m_Direction: 1
+--- !u!50 &4572793702362939180
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8902233714212117334}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0

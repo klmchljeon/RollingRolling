@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5176718819788062266}
   m_Layer: 0
   m_Name: M1_JumpSlide
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 3485219469894538283}
   - component: {fileID: 384377747276485887}
   - component: {fileID: 1341431915666723020}
+  - component: {fileID: 2876206708833308888}
+  - component: {fileID: 7914934678854070995}
   m_Layer: 0
   m_Name: M1_stone(JS)
   m_TagString: Untagged
@@ -61,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 5838131924521940706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.31036502, w: 0.95061755}
-  m_LocalPosition: {x: 2.2907598, y: -0.40296602, z: 0.03336234}
+  m_LocalPosition: {x: 2.29076, y: -0.40296602, z: 0.03336234}
   m_LocalScale: {x: 0.37439144, y: 0.37439144, z: 0.37439138}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -135,6 +137,7 @@ MonoBehaviour:
   orbitRadius: 7
   orbitSpeed: 1
   startAngle: 120
+  direction: 1
 --- !u!70 &1341431915666723020
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -167,9 +170,71 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.035056114, y: -0.5514111}
-  m_Size: {x: 4.012176, y: 2.4397283}
+  m_Offset: {x: -0.22146876, y: -0.80678695}
+  m_Size: {x: 3.4991262, y: 1.9289789}
   m_Direction: 1
+--- !u!70 &2876206708833308888
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5838131924521940706}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.25741422, y: 0.57135355}
+  m_Size: {x: 2.424051, y: 0.54265255}
+  m_Direction: 1
+--- !u!50 &7914934678854070995
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5838131924521940706}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &9115151620902615046
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +337,7 @@ MonoBehaviour:
   orbitRadius1: 7.5
   orbitSpeed1: 1
   startAngle1: 119.3
+  direction1: 1
 --- !u!70 &9044111137857813327
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -304,6 +370,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.0331569, y: 1.7415823}
-  m_Size: {x: 5.547118, y: 4.7001143}
+  m_Offset: {x: 1.5879767, y: 1.8633186}
+  m_Size: {x: 4.638677, y: 4.4566097}
   m_Direction: 1

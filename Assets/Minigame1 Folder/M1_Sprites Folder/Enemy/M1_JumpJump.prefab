@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1622388120716038552}
   m_Layer: 0
   m_Name: M1_JumpJump
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 709996365597302774}
   - component: {fileID: 5211547448053701794}
   - component: {fileID: 1844796066795795861}
+  - component: {fileID: 2851773816623747304}
+  - component: {fileID: 7604920652067904715}
   m_Layer: 0
   m_Name: M1_stone(JJ')
   m_TagString: Untagged
@@ -135,6 +137,7 @@ MonoBehaviour:
   orbitRadius: 7
   orbitSpeed: 1
   startAngle: 119.3
+  direction: 1
 --- !u!70 &1844796066795795861
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -167,9 +170,71 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.035056114, y: -0.5514111}
-  m_Size: {x: 4.012176, y: 2.4397283}
+  m_Offset: {x: 0.035449672, y: -0.7507209}
+  m_Size: {x: 4.012963, y: 2.0411294}
   m_Direction: 1
+--- !u!70 &2851773816623747304
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500625605498966306}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.25741422, y: 0.57135355}
+  m_Size: {x: 2.424051, y: 0.54265255}
+  m_Direction: 1
+--- !u!50 &7604920652067904715
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500625605498966306}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &7013124528019600416
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +247,8 @@ GameObject:
   - component: {fileID: 5746268482218867614}
   - component: {fileID: 5481778191185814082}
   - component: {fileID: 2765063028193973298}
+  - component: {fileID: 6985214033172086652}
+  - component: {fileID: 370519568303870186}
   m_Layer: 0
   m_Name: M1_stone(JJ)
   m_TagString: Untagged
@@ -272,6 +339,7 @@ MonoBehaviour:
   orbitRadius: 7
   orbitSpeed: 1
   startAngle: 120
+  direction: 1
 --- !u!70 &2765063028193973298
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -304,6 +372,68 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.035056114, y: -0.5514111}
-  m_Size: {x: 4.012176, y: 2.4397283}
+  m_Offset: {x: 0.047246315, y: -0.7483248}
+  m_Size: {x: 4.0365596, y: 2.0459182}
   m_Direction: 1
+--- !u!70 &6985214033172086652
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013124528019600416}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.25741422, y: 0.57135355}
+  m_Size: {x: 2.424051, y: 0.54265255}
+  m_Direction: 1
+--- !u!50 &370519568303870186
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013124528019600416}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
