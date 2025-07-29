@@ -72,7 +72,7 @@ public class M3_MakeCircle : MonoBehaviour
         aimController.gameObject.SetActive(true);
 
         //플레이어 초기 위치 및 설정 추가(1차)
-        player.transform.position = spawnPosition + Vector3.up * 0.5f; //살짝 위에 착지
+        player.transform.position = spawnPosition + Vector3.up * 0.05f; //살짝 위에 착지 -> 변경(0.5 -> 0.05)(7.29)
         playerScript.circle = newcircle.transform;
         playerScript.enabled = true;
 

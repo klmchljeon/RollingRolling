@@ -913,6 +913,10 @@ PrefabInstance:
       value: M3_Circle
       objectReference: {fileID: 0}
     - target: {fileID: 2710775733290614354, guid: 8b78978bdc71ad3448c62e1c78e8dd67, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2710775733290614354, guid: 8b78978bdc71ad3448c62e1c78e8dd67, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

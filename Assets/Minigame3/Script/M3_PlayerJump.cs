@@ -9,10 +9,10 @@ public class M3_PlayerJump : MonoBehaviour
     public M3_Player_Stand playerStand;
     public AimController aimController;
 
-    private Rigidbody rb;
+    private Rigidbody2D rb; //Rigidbody -> Rigidbody2D(7.29)
     private bool isGrounded = true;
     // Start is called before the first frame update
-    void Start() => rb = GetComponent<Rigidbody>();
+    void Start() => rb = GetComponent<Rigidbody2D>(); //RigidBody -> Rigidbody2D(7.29)
 
     // Update is called once per frame
     void Update()
