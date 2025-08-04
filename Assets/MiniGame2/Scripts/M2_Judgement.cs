@@ -8,7 +8,7 @@ public class Judgement : MonoBehaviour
     public M2_ScoreManager scoreManager;
     public M2_GenerateTarget generateTarget;
 
-    float hitThreshold = 13f;
+    float hitThreshold = 15f;
     public int score = 0;
 
     private TargetInfo currentClosestTarget = null;
@@ -28,11 +28,7 @@ public class Judgement : MonoBehaviour
 
     void Start()
     {
-        justFired = false;
-        fireSkipFrames = 0;
-        isFirstUpdate = true;
-        gameOverTriggered = false;
-        lastFiredTarget = null;
+        ResetRoundState();
     }
 
     public void Fire()
@@ -41,7 +37,7 @@ public class Judgement : MonoBehaviour
         if (angleManager.generatedTargets.Count == 0) return;
 
         justFired = true;
-        fireSkipFrames = 5;
+        fireSkipFrames = 3; // 이전보다 조금 줄임
 
         currentClosestTarget = null;
         previousDiffNullable = null;
@@ -49,29 +45,28 @@ public class Judgement : MonoBehaviour
         float aimAngle = moveAim.aimangle;
         bool isClockwise = moveAim.isClockwise;
 
+        // 🔹 Fire 직전 항상 최신 타겟 참조
         TargetInfo target = angleManager.GetNextTarget(aimAngle, isClockwise);
         if (target == null || target.targetObject == null) return;
 
-        // Fire 시점 타겟 복사
         lastFiredTarget = new TargetInfo(target.targetObject, target.angle);
 
+        // 🔹 최단 거리 기준 히트 판정
         float diff = target.GetDirectionalAngleDifference(aimAngle, isClockwise);
-        float realDiff = Mathf.Min(360f - diff, diff);
+        float realDiff = Mathf.Min(360f - Mathf.Abs(diff), Mathf.Abs(diff));
 
         if (realDiff <= hitThreshold)
         {
             int earned = scoreManager.CalculateScore(realDiff);
             score += earned;
 
-            Debug.Log($"Fire Hit! 타겟: {target.targetObject.name}, diff: {diff:F2}°, 점수: +{earned}");
+            Debug.Log($"Fire Hit! 타겟: {target.targetObject.name}, diff: {realDiff:F2}°, 점수: +{earned}");
 
             Destroy(target.targetObject);
             angleManager.generatedTargets.Remove(target);
 
             if (angleManager.generatedTargets.Count == 0)
-            {
                 waitingForNextTargets = true;
-            }
         }
         else
         {
@@ -79,7 +74,7 @@ public class Judgement : MonoBehaviour
             GameOver();
         }
 
-        Invoke(nameof(ResetJustFired), 0.3f);
+        Invoke(nameof(ResetJustFired), 0.15f); // 🔹 유지 시간 단축
     }
 
     void Update()
@@ -118,15 +113,11 @@ public class Judgement : MonoBehaviour
             previousDiffNullable = currentDiff;
             currentClosestTarget = next;
 
-            // 최초 Update시 previousAimAngle 초기화 (중요!)
             previousAimAngle = aimAngle;
             isFirstUpdate = false;
         }
         else
         {
-            float normPreviousDiff = NormalizeAngleDiff(previousDiffNullable.Value);
-
-            // Fire 시점 타겟과 현재 차이 비교 (기존 판정 보완)
             float lastFiredDiff = lastFiredTarget != null
                 ? lastFiredTarget.GetDirectionalAngleDifference(aimAngle, isClockwise)
                 : currentDiff;
@@ -148,7 +139,9 @@ public class Judgement : MonoBehaviour
             float targetAngle = currentClosestTarget.angle;
             float currentAimAngle = moveAim.aimangle;
 
-            if (HasPassedTarget(previousAimAngle, currentAimAngle, targetAngle, isClockwise, tolerance))
+            // 첫 프레임은 지나침 판정 스킵
+            if (!isFirstUpdate &&
+                HasPassedTarget(previousAimAngle, currentAimAngle, targetAngle, isClockwise, tolerance))
             {
                 Debug.Log($"게임 오버: 타겟 {targetAngle:F2}° 지나침!");
                 GameOver();
@@ -167,6 +160,11 @@ public class Judgement : MonoBehaviour
             Debug.Log("새 타겟 생성 완료");
         }
 
+        ResetRoundState();
+    }
+
+    void ResetRoundState()
+    {
         justFired = false;
         currentClosestTarget = null;
         previousDiffNullable = null;
@@ -175,6 +173,9 @@ public class Judgement : MonoBehaviour
         isFirstUpdate = true;
         fireSkipFrames = 0;
         lastFiredTarget = null;
+
+        if (moveAim != null)
+            previousAimAngle = moveAim.aimangle;
     }
 
     float NormalizeAngleDiff(float angle)
@@ -197,6 +198,9 @@ public class Judgement : MonoBehaviour
         gameOverTriggered = true;
     }
 
+    /// <summary>
+    /// 타겟을 지나쳤는지 판정 (360° 경계 보정)
+    /// </summary>
     bool HasPassedTarget(float prev, float current, float target, bool isClockwise, float tolerance)
     {
         float Normalize(float a) => (a + 360f) % 360f;
@@ -210,17 +214,18 @@ public class Judgement : MonoBehaviour
 
         if (IsAngleInRange(current, lowerBound, upperBound)) return false;
 
+        // 🔹 이동 각도
+        float delta = Mathf.DeltaAngle(prev, current);
+
         if (isClockwise)
         {
-            if (current < prev) current += 360f;
-            if (target < prev) target += 360f;
-            return target > prev && target <= current;
+            if (delta < 0) delta += 360f;  // 경계 보정
+            return prev < target && prev + delta >= target;
         }
         else
         {
-            if (current > prev) current -= 360f;
-            if (target > prev) target -= 360f;
-            return target < prev && target >= current;
+            if (delta > 0) delta -= 360f;  // 경계 보정
+            return prev > target && prev + delta <= target;
         }
     }
 
