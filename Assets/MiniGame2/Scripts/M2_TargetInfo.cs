@@ -1,12 +1,14 @@
 // TargetInfo.cs (순수 개별 타겟 정보만 유지)
 using UnityEngine;
 
-public class TargetInfo
+
+[System.Serializable]
+public class M2_TargetInfo : MonoBehaviour
 {
     public GameObject targetObject;
     public float angle;
 
-    public TargetInfo(GameObject obj, float angle)
+    public M2_TargetInfo(GameObject obj, float angle)
     {
         this.targetObject = obj;
         this.angle = angle;

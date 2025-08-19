@@ -12,7 +12,7 @@ public class M3_MakeCircle : MonoBehaviour
 
     public GameObject player; //플레이어 연결용 추가(1차)
     public M3_Player_Stand playerScript; //플레이어 회전 스크립트(불러오기 추가)(1차)
-    public AimController aimController; //조준점 스크립트 연결용 추가(1차)
+    public M3_AimController aimController; //조준점 스크립트 연결용 추가(1차)
 
     //플레이어가 현재 서있는 원판 추가(2차 수정 중 새로 추가)
     private GameObject playerCurrentCircle = null;

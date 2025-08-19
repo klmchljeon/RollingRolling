@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class M2_AngleManager : MonoBehaviour
 {
-    public List<TargetInfo> generatedTargets = new();
+    public List<M2_TargetInfo> generatedTargets = new();
 
     public void ClearTargets()
     {
@@ -12,14 +12,14 @@ public class M2_AngleManager : MonoBehaviour
 
     public void AddTarget(GameObject obj, float angle)
     {
-        generatedTargets.Add(new TargetInfo(obj, angle));
+        generatedTargets.Add(new M2_TargetInfo(obj, angle));
     }
 
     // 앞에 있는 타겟만 필터링해서 정렬하도록 수정
     public void SortTargetsByAimWithDirection(float aimAngle, bool clockwise)
     {
         // 앞에 있는 타겟만 추출
-        List<TargetInfo> frontTargets = generatedTargets.FindAll(t => t.IsInFrontOfAim(aimAngle, clockwise));
+        List<M2_TargetInfo> frontTargets = generatedTargets.FindAll(t => t.IsInFrontOfAim(aimAngle, clockwise));
 
         // 앞에 있는 타겟만 정렬
         frontTargets.Sort((a, b) =>
@@ -41,9 +41,9 @@ public class M2_AngleManager : MonoBehaviour
     }
 
     // 앞에 있는 타겟 중 가장 가까운 타겟 반환
-    public TargetInfo GetNextTarget(float aimAngle, bool clockwise)
+    public M2_TargetInfo GetNextTarget(float aimAngle, bool clockwise)
     {
-        List<TargetInfo> frontTargets = generatedTargets.FindAll(t => t.IsInFrontOfAim(aimAngle, clockwise));
+        List<M2_TargetInfo> frontTargets = generatedTargets.FindAll(t => t.IsInFrontOfAim(aimAngle, clockwise));
         if (frontTargets.Count == 0) return null;
 
         frontTargets.Sort((a, b) =>
