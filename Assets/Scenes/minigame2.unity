@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a701453e6a28848a4cb1043b36c3dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generatedTargets: []
 --- !u!1 &790083798
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,8 +394,8 @@ GameObject:
   m_Component:
   - component: {fileID: 830441027}
   - component: {fileID: 830441028}
-  - component: {fileID: 830441029}
   - component: {fileID: 830441030}
+  - component: {fileID: 830441031}
   m_Layer: 0
   m_Name: oval
   m_TagString: Untagged
@@ -471,24 +472,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &830441029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830441026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82cdde76d626e9042becc357dda4e3a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveAim: {fileID: 1804633664}
-  angleManager: {fileID: 758792627}
-  scoreManager: {fileID: 830441030}
-  score: 0
-  justFired: 1
-  generateTarget: {fileID: 758792626}
 --- !u!114 &830441030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,6 +484,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4961fc6fdaa4d4aa55d23407cc58a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &830441031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830441026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cdde76d626e9042becc357dda4e3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveAim: {fileID: 0}
+  angleManager: {fileID: 0}
+  scoreManager: {fileID: 0}
+  generateTarget: {fileID: 0}
+  score: 0
 --- !u!1 &934952322
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,9 +686,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 830441029}
-        m_TargetAssemblyTypeName: Judgement, Assembly-CSharp
-        m_MethodName: Fire
+      - m_Target: {fileID: 11500000, guid: 82cdde76d626e9042becc357dda4e3a7, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
