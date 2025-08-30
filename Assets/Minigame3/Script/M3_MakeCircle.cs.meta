@@ -3,7 +3,12 @@ guid: a4d050cea95a9e9488e161523e827250
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - circle: {fileID: 2710775733290614354, guid: 8b78978bdc71ad3448c62e1c78e8dd67, type: 3}
+  - containerTransform: {instanceID: 0}
+  - player: {instanceID: 0}
+  - playerScript: {instanceID: 0}
+  - aimController: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

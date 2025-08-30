@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AimController : MonoBehaviour
+public class M3_AimController : MonoBehaviour
 {
     public Transform center; // 회전 중심 (플레이어)
     public Transform circle;

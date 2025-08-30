@@ -7,7 +7,7 @@ public class M3_PlayerJump : MonoBehaviour
     public float jumpforce = 5f; //점프 수치
     public LayerMask circleLayer; //원판 감지
     public M3_Player_Stand playerStand;
-    public AimController aimController;
+    public M3_AimController aimController;
 
     private Rigidbody2D rb; //Rigidbody -> Rigidbody2D(7.29)
     private bool isGrounded = true;
