@@ -496,10 +496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cdde76d626e9042becc357dda4e3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAim: {fileID: 0}
-  angleManager: {fileID: 0}
-  scoreManager: {fileID: 0}
-  generateTarget: {fileID: 0}
+  moveAim: {fileID: 1804633664}
+  angleManager: {fileID: 758792627}
+  scoreManager: {fileID: 830441030}
+  generateTarget: {fileID: 758792626}
   score: 0
 --- !u!1 &934952322
 GameObject:
@@ -686,9 +686,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 82cdde76d626e9042becc357dda4e3a7, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 830441031}
+        m_TargetAssemblyTypeName: M2_Judgement, Assembly-CSharp
+        m_MethodName: Fire
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

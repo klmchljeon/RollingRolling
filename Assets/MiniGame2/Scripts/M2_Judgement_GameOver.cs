@@ -5,7 +5,7 @@ public partial class M2_Judgement : MonoBehaviour
     void GameOver()
     {
         Debug.Log("게임 오버 발생");
-        moveAim.stopMoving();
+        moveAim.StopMoving();
         gameOverTriggered = true;
     }
 
@@ -18,6 +18,7 @@ public partial class M2_Judgement : MonoBehaviour
         // 🔸 AngleManager에서 현재 Aim 앞에 있는 가장 가까운 타겟 가져오기
         M2_TargetInfo next = angleManager.GetNextTarget(aimAngle, isClockwise);
         if (next == null || next.targetObject == null) return;
+        Debug.Log($"가장 가까운 타겟: {next.targetObject.name} at {next.angle}°");
 
         float currentDiff = next.GetDirectionalAngleDifference(aimAngle, isClockwise);
         float normCurrentDiff = NormalizeAngleDiff(currentDiff);

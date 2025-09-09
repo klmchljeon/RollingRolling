@@ -1,4 +1,3 @@
-// TargetInfo.cs (순수 개별 타겟 정보만 유지)
 using UnityEngine;
 
 
@@ -22,6 +21,8 @@ public class M2_TargetInfo : MonoBehaviour
 
     public bool IsInFrontOfAim(float aim, bool isClockwise)
     {
+        return true; // Debugging: 항상 true 반환
+        Debug.Log($"IsInFrontOfAim 호출: target angle={angle}, aim={aim}, isClockwise={isClockwise}");
         float diff = (angle - aim + 360f) % 360f;
         if (isClockwise)
             return diff > 0f && diff < 180f;

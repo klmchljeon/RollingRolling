@@ -74,7 +74,7 @@ public class M2_GenerateTarget : MonoBehaviour
         GameObject newTarget = Instantiate(target);
         newTarget.transform.SetParent(transform);
         newTarget.transform.position = pos;
-
+        Debug.Log($"积己等 鸥百: {newTarget.name} at angle {angle}∑");
         angleManager.AddTarget(newTarget, angle);
         return angle;
     }

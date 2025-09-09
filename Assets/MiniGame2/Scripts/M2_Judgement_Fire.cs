@@ -4,8 +4,10 @@ public partial class M2_Judgement : MonoBehaviour
 {
     public void Fire()
     {
+
         if (moveAim == null || angleManager == null || angleManager.generatedTargets == null) return;
         if (angleManager.generatedTargets.Count == 0) return;
+
 
         justFired = true;
         fireSkipFrames = 1;
@@ -16,8 +18,12 @@ public partial class M2_Judgement : MonoBehaviour
         float aimAngle = moveAim.aimangle;
         bool isClockwise = moveAim.isClockwise;
 
+        Debug.Log($"Fire! Aim Angle: {aimAngle}°, Direction: {(isClockwise ? "Clockwise" : "Counterclockwise")}");
         M2_TargetInfo target = angleManager.GetNextTarget(aimAngle, isClockwise);
-        if (target == null || target.targetObject == null) return;
+        Debug.Log(target.targetObject.name);
+        if (target.targetObject == null) return;
+
+        Debug.Log("fire123");
 
         lastFiredTarget = new M2_TargetInfo(target.targetObject, target.angle);
 

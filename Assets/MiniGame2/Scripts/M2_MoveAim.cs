@@ -45,7 +45,7 @@ public class M2_MoveAim : MonoBehaviour
         return aimangle;
     }
 
-    public void stopMoving()
+    public void StopMoving()
     {
         isMoving = false;
     }

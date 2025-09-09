@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class M2_ScoreManager : MonoBehaviour
 {
-    public int totalScore { get; private set; } = 0;
+    public int TotalScore { get; private set; } = 0;
 
     public int CalculateScore(float realDiff)
     {
@@ -23,8 +23,8 @@ public class M2_ScoreManager : MonoBehaviour
         }
         // 13도 초과한 경우에는 0점
 
-        totalScore += score;
-        Debug.Log($"총 점수: {totalScore}");
+        TotalScore += score;
+        Debug.Log($"총 점수: {TotalScore}");
 
         return score;
 
@@ -32,6 +32,6 @@ public class M2_ScoreManager : MonoBehaviour
 
     public void ResetScore()
     {
-        totalScore = 0;
+        TotalScore = 0;
     }
 }

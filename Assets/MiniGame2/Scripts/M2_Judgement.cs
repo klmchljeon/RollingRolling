@@ -41,6 +41,14 @@ public partial class M2_Judgement : MonoBehaviour
             {
                 moveAim.ToggleDirection();
                 GenerateNextTargets();
+
+                previousDiffNullable = null;
+                currentClosestTarget = null;
+                lastFiredTarget = null;
+                isFirstUpdate = true;
+                waitingForNextTargets = false;
+
+                Debug.Log("[Judgement] 새로운 라운드 시작, 상태 초기화 완료");
             }
             return;
         }
@@ -53,8 +61,6 @@ public partial class M2_Judgement : MonoBehaviour
 
         if (justFired || gameOverTriggered) return;
 
-        // 🔹 GameOver 판정 보조 메서드 호출
         UpdateGameOverCheck();
     }
-
 }
