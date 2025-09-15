@@ -18,24 +18,27 @@ public partial class M2_Judgement : MonoBehaviour
         float aimAngle = moveAim.aimangle;
         bool isClockwise = moveAim.isClockwise;
 
-        Debug.Log($"Fire! Aim Angle: {aimAngle}°, Direction: {(isClockwise ? "Clockwise" : "Counterclockwise")}");
-        M2_TargetInfo target = angleManager.GetNextTarget(aimAngle, isClockwise);
-        Debug.Log(target.targetObject.name);
-        if (target.targetObject == null) return;
+        //Debug.Log($"Fire! Aim Angle: {aimAngle}°, Direction: {(isClockwise ? "Clockwise" : "Counterclockwise")}");
+        M2_TargetInfo target = next;
+        //Debug.Log(target.targetObject.name);
+        if (target == null || target.targetObject == null) return;
 
-        Debug.Log("fire123");
+        //Debug.Log("fire123");
 
         lastFiredTarget = new M2_TargetInfo(target.targetObject, target.angle);
 
         float diff = target.GetDirectionalAngleDifference(aimAngle, isClockwise);
-        float realDiff = Mathf.Min(360f - Mathf.Abs(diff), Mathf.Abs(diff));
+        float realDiff = Mathf.Min(360f - diff, diff);
 
         if (realDiff <= hitThreshold)
         {
             int earned = scoreManager.CalculateScore(realDiff);
             score += earned;
 
-            Debug.Log($"Fire Hit! 타겟: {target.targetObject.name}, diff: {realDiff:F2}°, 점수: +{earned}");
+            cur_score.text = $"Score: {score}";
+            //베스트 스코어 갱신 로직
+
+            //Debug.Log($"Fire Hit! 타겟: {target.targetObject.name}, diff: {realDiff:F2}°, 점수: +{earned}");
 
             Destroy(target.targetObject);
             angleManager.generatedTargets.Remove(target);
@@ -49,7 +52,7 @@ public partial class M2_Judgement : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Fire Missed! realDiff: {realDiff:F2}° > threshold {hitThreshold}");
+            //Debug.Log($"Fire Missed! realDiff: {realDiff:F2}° > threshold {hitThreshold}");
             GameOver();
         }
 

@@ -4,8 +4,8 @@ public class M2_MoveAim : MonoBehaviour
 {
     public Transform center;
     private const float radius = 2f;
-    public float speed = 50f;
-    public float speedIncreaseAmount = 10f;
+    public float speed = 100f;
+    public float speedIncreaseAmount = 20f;
     public float maxSpeed = 200f;
 
     public float aimangle = 0f;
@@ -31,7 +31,7 @@ public class M2_MoveAim : MonoBehaviour
         if (round % 5 == 0)
         {
             speed = Mathf.Min(speed + speedIncreaseAmount, maxSpeed);
-            Debug.Log($"라운드 {round}: 속도 증가! 현재 속도 = {speed}");
+            //Debug.Log($"라운드 {round}: 속도 증가! 현재 속도 = {speed}");
         }
     }
 

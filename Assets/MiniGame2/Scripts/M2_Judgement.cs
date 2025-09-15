@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 
 public partial class M2_Judgement : MonoBehaviour
 {
+    [SerializeField] private TMP_Text cur_score;
+    [SerializeField] private TMP_Text best_score;
+
     public M2_MoveAim moveAim;
     public M2_AngleManager angleManager;
     public M2_ScoreManager scoreManager;
@@ -18,16 +22,17 @@ public partial class M2_Judgement : MonoBehaviour
     private bool gameOverTriggered = false;
     private bool waitingForNextTargets = false;
 
-    private float previousAimAngle;
     private bool isFirstUpdate = true;
 
     private float tolerance = 15f;
     private int fireSkipFrames = 0;
 
     private M2_TargetInfo lastFiredTarget = null;
+    private M2_TargetInfo next;
 
     void Start()
     {
+        cur_score.text = "Score: 0";
         ResetRoundState();
     }
 
@@ -42,10 +47,13 @@ public partial class M2_Judgement : MonoBehaviour
                 moveAim.ToggleDirection();
                 GenerateNextTargets();
 
+                //float aimAngle = moveAim.aimangle;
+                //bool isClockwise = moveAim.isClockwise;
+                //adjTarget = angleManager.GetNextTarget(aimAngle, isClockwise);
+
                 previousDiffNullable = null;
                 currentClosestTarget = null;
                 lastFiredTarget = null;
-                isFirstUpdate = true;
                 waitingForNextTargets = false;
 
                 Debug.Log("[Judgement] 새로운 라운드 시작, 상태 초기화 완료");

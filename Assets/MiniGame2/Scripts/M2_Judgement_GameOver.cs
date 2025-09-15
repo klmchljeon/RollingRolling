@@ -15,56 +15,33 @@ public partial class M2_Judgement : MonoBehaviour
         float aimAngle = moveAim.aimangle;
         bool isClockwise = moveAim.isClockwise;
 
-        // 🔸 AngleManager에서 현재 Aim 앞에 있는 가장 가까운 타겟 가져오기
-        M2_TargetInfo next = angleManager.GetNextTarget(aimAngle, isClockwise);
-        if (next == null || next.targetObject == null) return;
-        Debug.Log($"가장 가까운 타겟: {next.targetObject.name} at {next.angle}°");
-
-        float currentDiff = next.GetDirectionalAngleDifference(aimAngle, isClockwise);
-        float normCurrentDiff = NormalizeAngleDiff(currentDiff);
-
         if (previousDiffNullable == null)
         {
-            previousDiffNullable = currentDiff;
+
+            // 🔸 AngleManager에서 현재 Aim 앞에 있는 가장 가까운 타겟 가져오기
+            next = angleManager.GetNextTarget(aimAngle, isClockwise);
+            if (next == null || next.targetObject == null) return;
+            //Debug.Log($"가장 가까운 타겟: {next.targetObject.name} at {next.angle}°, {isClockwise}");
+
+            previousDiffNullable = next.GetDirectionalAngleDifference(aimAngle, isClockwise);
             currentClosestTarget = next;
 
-            previousAimAngle = aimAngle;
-            isFirstUpdate = false;
+            return;
         }
-        else
-        {
-            float lastFiredDiff = lastFiredTarget != null
-                ? lastFiredTarget.GetDirectionalAngleDifference(aimAngle, isClockwise)
-                : currentDiff;
-            float normLastFiredDiff = NormalizeAngleDiff(lastFiredDiff);
 
-            // 🔹 발사 시점 각도보다 현재 차이가 tolerance 이상 커졌으면 GameOver
-            if (normCurrentDiff > normLastFiredDiff + tolerance)
-            {
-                Debug.Log($"게임 오버: 각도 초과 (현재 {normCurrentDiff:F2} > Fire시점 {normLastFiredDiff:F2} + {tolerance})");
-                GameOver();
-                return;
-            }
 
-            currentClosestTarget = next;
-            previousDiffNullable = currentDiff;
-        }
+        //currentClosestTarget = next;
+        //previousDiffNullable = currentDiff;
 
         // 🔹 타겟을 지나쳤는지 체크
-        if (currentClosestTarget != null)
+        float curDiff = next.GetDirectionalAngleDifference(aimAngle, isClockwise);
+
+        if (HasPassedTarget(previousDiffNullable, curDiff, tolerance))
         {
-            float targetAngle = currentClosestTarget.angle;
-            float currentAimAngle = moveAim.aimangle;
-
-            if (!isFirstUpdate &&
-                HasPassedTarget(previousAimAngle, currentAimAngle, targetAngle, isClockwise, tolerance))
-            {
-                Debug.Log($"게임 오버: 타겟 {targetAngle:F2}° 지나침!");
-                GameOver();
-                return;
-            }
-
-            previousAimAngle = currentAimAngle;
+            
+            //Debug.Log($"게임 오버: 타겟 지나침!");
+            GameOver();
+            return;
         }
     }
 }

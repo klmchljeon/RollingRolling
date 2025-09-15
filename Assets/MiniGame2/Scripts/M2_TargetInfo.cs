@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class M2_TargetInfo : MonoBehaviour
+public class M2_TargetInfo
 {
     public GameObject targetObject;
     public float angle;
@@ -15,12 +15,21 @@ public class M2_TargetInfo : MonoBehaviour
 
     public float GetDirectionalAngleDifference(float aim, bool isClockwise)
     {
-        float diff = (angle - aim + 360f) % 360f;
-        return isClockwise ? diff : (360f - diff) % 360f;
+        if (isClockwise)
+        {
+            float diff = (aim + 360f - angle) % 360f;
+            return diff;
+        }
+        else
+        {
+            float diff = (angle + 360f - aim) % 360f;
+            return diff;
+        }
     }
 
     public bool IsInFrontOfAim(float aim, bool isClockwise)
     {
+        return true;
         float diff = (angle - aim + 360f) % 360f;
 
         // float 오차 허용 (정확히 aim 위에 있는 경우도 앞에 있다고 간주)

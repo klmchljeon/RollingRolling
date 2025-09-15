@@ -17,14 +17,14 @@ public class M2_GenerateTarget : MonoBehaviour
         // 연결 안 됐을 경우 찾기
         if (angleManager == null) { 
             angleManager = GetComponent<M2_AngleManager>();
-            Debug.Log(angleManager);
+            //Debug.Log(angleManager);
         }
         if (moveAim == null)
             moveAim = FindObjectOfType<M2_MoveAim>();
 
         if (angleManager == null)// || moveAim == null)
         {
-            Debug.LogError("angleManager 또는 moveAim을 찾을 수 없습니다.");
+            //Debug.LogError("angleManager 또는 moveAim을 찾을 수 없습니다.");
             yield break;
         }
 
@@ -36,7 +36,7 @@ public class M2_GenerateTarget : MonoBehaviour
 
     float MakeTarget(List<float> existingAngles)
     {
-        float minAngleGap = 30f;
+        float minAngleGap = 60f;
         float minDistanceFromAim = 30f;
         float angle = Random.Range(0, 360);
         int safety = 0;
@@ -74,7 +74,7 @@ public class M2_GenerateTarget : MonoBehaviour
         GameObject newTarget = Instantiate(target);
         newTarget.transform.SetParent(transform);
         newTarget.transform.position = pos;
-        Debug.Log($"생성된 타겟: {newTarget.name} at angle {angle}°");
+        //Debug.Log($"생성된 타겟: {newTarget.name} at angle {angle}°");
         angleManager.AddTarget(newTarget, angle);
         return angle;
     }
@@ -82,7 +82,7 @@ public class M2_GenerateTarget : MonoBehaviour
 
     public void GeneratingTarget()
     {
-        Debug.Log($"함수 호출 {gameObject.name}");
+        //Debug.Log($"함수 호출 {gameObject.name}");
         angleManager.ClearTargets();
 
         int targetNumber = Random.Range(1, 3); // 1 또는 2개
@@ -94,7 +94,15 @@ public class M2_GenerateTarget : MonoBehaviour
             existingAngles.Add(angle);
         }
 
-        angleManager.SortTargetsByAimWithDirection(moveAim.aimangle, moveAim.isClockwise);
+        if (angleManager.generatedTargets.Count == targetNumber)
+        {
+            //Debug.Log("잘 생성");
+            angleManager.SortTargetsByAimWithDirection(moveAim.aimangle, moveAim.isClockwise);
+        }
+        else
+        {
+            //Debug.Log("딜레이");
+        }
 
         // 라운드 증가 및 MoveAim 속도 증가 호출
         round++;

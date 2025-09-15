@@ -938,8 +938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {fileID: 830441027}
-  speed: 50
-  speedIncreaseAmount: 10
+  speed: 100
+  speedIncreaseAmount: 20
   maxSpeed: 200
   aimangle: 0
   isClockwise: 1

@@ -9,31 +9,9 @@ public partial class M2_Judgement : MonoBehaviour
         return Mathf.Min(angle, 360f - angle);
     }
 
-    bool HasPassedTarget(float prev, float current, float target, bool isClockwise, float tolerance)
+    bool HasPassedTarget(float? prev, float current, float tolerance)
     {
-        float Normalize(float a) => (a + 360f) % 360f;
-
-        prev = Normalize(prev);
-        current = Normalize(current);
-        target = Normalize(target);
-
-        float lowerBound = Normalize(target - tolerance);
-        float upperBound = Normalize(target + tolerance);
-
-        if (IsAngleInRange(current, lowerBound, upperBound)) return false;
-
-        float delta = Mathf.DeltaAngle(prev, current);
-
-        if (isClockwise)
-        {
-            if (delta < 0) delta += 360f;
-            return prev < target && prev + delta >= target;
-        }
-        else
-        {
-            if (delta > 0) delta -= 360f;
-            return prev > target && prev + delta <= target;
-        }
+        return current > prev && current < 360f - tolerance;
     }
 
     bool IsAngleInRange(float angle, float start, float end)
