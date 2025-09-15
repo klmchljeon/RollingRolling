@@ -434,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 341349128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.114, y: 0.14, z: 0}
+  m_LocalPosition: {x: -2.19, y: 0.14, z: 0}
   m_LocalScale: {x: 0.2151048, y: 0.2151048, z: 0.2151048}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1017,10 +1017,8 @@ MonoBehaviour:
   center: {fileID: 1428455839}
   EnemyList:
   - {fileID: 721024970049441947, guid: 5644cec0ac896764a80b613b3ebbc718, type: 3}
-  - {fileID: 4825640639286733206, guid: 553efb166cdeb544ca6135fb3cffbcdd, type: 3}
-  - {fileID: 3268488232546187037, guid: f07c616e0d30777478a6ea7e04bbe4ae, type: 3}
   - {fileID: 6034696763756269892, guid: 9ee25e6cc46245e4fa69657bb4bd873b, type: 3}
-  timeDiffer: 1.5
+  timeDiffer: 1
 --- !u!1 &1352624760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,8 +1355,10 @@ MonoBehaviour:
   reverseTime: 9
   backgroundRenderer: {fileID: 964366018}
   newBackground: {fileID: 21300000, guid: e7dffe56b42fa2749bde55eff78c9fff, type: 3}
+  tmpBackground: {fileID: 21300000, guid: 4b1b18ea0b9d4e34bbabf5b22b579067, type: 3}
   player: {fileID: 341349130}
-  playerNewPosition: {x: 2.19, y: 0.14, z: 0}
+  playerNightPosition: {x: 2.19, y: 0.14, z: 0}
+  playerPosition: {x: -2.19, y: 0.14, z: 0}
   backgroundRotator: {fileID: 964366017}
   screenFader: {fileID: 1858134718}
 --- !u!4 &1775114519

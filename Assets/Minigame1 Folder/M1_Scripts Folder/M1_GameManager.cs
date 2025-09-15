@@ -6,14 +6,16 @@ public class M1_GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static M1_GameManager Instance;
-    public float reverseTime = 30f;
+    public float reverseTime = 9f;
     public SpriteRenderer backgroundRenderer;
     public Sprite newBackground;
+    public Sprite tmpBackground;
     private float timer = 0f;
-    private bool reversed = false;
+    //private bool reversed = false;
     public int CurrentDirection { get; private set; } = 1;
     public Transform player;
-    public Vector3 playerNewPosition;
+    public Vector3 playerNightPosition;
+    public Vector3 playerPosition;
     public M1_BackgroundRotation backgroundRotator;
 
     public M1_ScreenFader screenFader; //페이드 연출용
@@ -35,9 +37,10 @@ public class M1_GameManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (!reversed && timer >= reverseTime)
+        if (timer >= reverseTime)
         {
-            reversed = true;
+            //reversed ^= true;
+            timer = 0f;
             /*CurrentDirection = -1;
 
             if (backgroundRenderer != null && newBackground != null) //배경전환
@@ -63,12 +66,18 @@ public class M1_GameManager : MonoBehaviour
         }
         //3. 플레이어 위치 변경
         if (player != null)
-            player.position = playerNewPosition;
+        {
+            player.position = CurrentDirection == 1 ? playerNightPosition : playerPosition;
+        }
         //4.배경전환
         if (backgroundRenderer != null && newBackground != null)
+        {
+            tmpBackground = backgroundRenderer.sprite;
             backgroundRenderer.sprite = newBackground;
+            newBackground = tmpBackground;
+        }
         //5.방향반전
-        CurrentDirection = -1;
+        CurrentDirection = CurrentDirection == 1? -1 : 1;
         //배경회전관련
         if (backgroundRotator != null)
             backgroundRotator.SetDirectiong(CurrentDirection);

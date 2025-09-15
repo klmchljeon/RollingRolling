@@ -37,6 +37,7 @@ public class M1_stonerotation : MonoBehaviour
                 Vector3 flipped = new Vector3(-originalPos.x, originalPos.y, originalPos.z);
                 transform.position = flipped;
                 transform.rotation = Quaternion.Euler(0, 0, -originalRotation.z);
+                angle = 3.14f;
             }
             else
             {

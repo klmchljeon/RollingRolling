@@ -11,7 +11,7 @@ public class M1_doverotation : MonoBehaviour
     public float orbitRadius1 = 2f;     // 원의 반지름
     public float orbitSpeed1 = 50f;     // 회전 속도 (도/초)
 
-    private float angle1 = 0f;
+    public float angle1 = 0f;
 
     public float startAngle1 = 0f;
     public int direction1 = 1; // 얘 관련된놈들이 추가한거임(SetDirection)
@@ -34,6 +34,8 @@ public class M1_doverotation : MonoBehaviour
                 Vector3 flipped1 = new Vector3(-originalPos1.x, originalPos1.y, originalPos1.z);
                 transform.position = flipped1;
                 transform.rotation = Quaternion.Euler(0, 0, -originalRotation1.z);
+                transform.GetComponent<SpriteRenderer>().flipX = false;
+                angle1 = 3.14f;
             }
             else
             {

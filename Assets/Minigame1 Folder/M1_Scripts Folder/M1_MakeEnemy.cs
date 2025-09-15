@@ -23,6 +23,7 @@ public class M1_MakeEnemy : MonoBehaviour
         {
             SpawnEnemy(); //이놈 둘이가 추가한거임
             timer = 0;
+            timeDiffer = Random.value + 0.5f;
             /*GameObject Enemy = Instantiate(EnemyList[Random.Range(0, 4)]);
             foreach (Transform t in Enemy.transform)
             {
@@ -46,7 +47,8 @@ public class M1_MakeEnemy : MonoBehaviour
 
     void SpawnEnemy()
     {
-        GameObject Enemy = Instantiate(EnemyList[Random.Range(0, 4)]);
+        Debug.Log("123");
+        GameObject Enemy = Instantiate(EnemyList[Random.Range(0, 2)]);
         if (M1_GameManager.Instance.CurrentDirection == -1)
         {
             foreach (Transform t in Enemy.transform)
