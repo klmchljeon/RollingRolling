@@ -10,7 +10,8 @@ public class M3_Player_Stand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position - circle.position;
+        offset = (transform.position - circle.position) + new Vector3(0.1f,0.1f,0f);
+        Debug.Log(offset);
         previousAngle = circle.rotation.eulerAngles.z;
     }
 

@@ -33,11 +33,14 @@ public class M3_MakeCircle : MonoBehaviour
         prevPosition = transform.position;
 
         FirstGen();
+        Gen();
+        Gen();
     }
 
     // Update is called once per frame
     void Update()
     {
+        return;
         timer += Time.deltaTime;
         if (timer > timeDiff)
         {
@@ -72,7 +75,7 @@ public class M3_MakeCircle : MonoBehaviour
         aimController.gameObject.SetActive(true);
 
         //플레이어 초기 위치 및 설정 추가(1차)
-        player.transform.position = spawnPosition + Vector3.up * 0.05f; //살짝 위에 착지 -> 변경(0.5 -> 0.05)(7.29)
+        player.transform.position = spawnPosition + Vector3.up * 0.1f; //살짝 위에 착지 -> 변경(0.5 -> 0.05)(7.29)
         playerScript.circle = newcircle.transform;
         playerScript.enabled = true;
 
@@ -90,7 +93,7 @@ public class M3_MakeCircle : MonoBehaviour
         prevPosition = Vector3.zero;
         prevDiameter = diameter;
 
-        Destroy(newcircle, 10.0f); //첫 원판도 삭제됨(조건 추가 후 조정)
+        //Destroy(newcircle, 10.0f); //첫 원판도 삭제됨(조건 추가 후 조정)
     }
     void Gen()
     {
@@ -113,7 +116,7 @@ public class M3_MakeCircle : MonoBehaviour
 
         //회전 속도 0이 되지 않도록 조정(3차 수정)
         float speed = 0f;
-        while (Mathf.Abs(speed) < 0.5f)
+        while (Mathf.Abs(speed) < 1f)
             speed = Random.Range(-2f, 2f);
         newcircle.GetComponent<M3_Move>().speed = speed;
 
@@ -128,8 +131,8 @@ public class M3_MakeCircle : MonoBehaviour
         prevPosition = spawnPosition;
         prevDiameter = diameter;
 
-        if (playerCurrentCircle != newcircle)
-            Destroy(newcircle, 10.0f);
+        //if (playerCurrentCircle != newcircle)
+        //    Destroy(newcircle, 10.0f);
     }
     
     //2차 수정 추가

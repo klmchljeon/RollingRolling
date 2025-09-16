@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public partial class M2_Judgement : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public partial class M2_Judgement : MonoBehaviour
         Debug.Log("게임 오버 발생");
         moveAim.StopMoving();
         gameOverTriggered = true;
+        PlayerPrefs.SetInt("M2_Score", bestScore);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("MiniGame2OverScene");
     }
 
     // 🔹 게임오버 판정 업데이트

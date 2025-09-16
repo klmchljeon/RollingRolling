@@ -8,4 +8,9 @@ public class M1_Replay : MonoBehaviour
     {
         SceneManager.LoadScene("MIniGame1");
     }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }

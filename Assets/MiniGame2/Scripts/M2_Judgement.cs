@@ -13,7 +13,8 @@ public partial class M2_Judgement : MonoBehaviour
     public M2_GenerateTarget generateTarget;
 
     float hitThreshold = 15f;
-    public int score = 0;
+    public static int score = 0;
+    public static int bestScore = 0;
 
     private M2_TargetInfo currentClosestTarget = null;
     private float? previousDiffNullable = null;
@@ -32,7 +33,10 @@ public partial class M2_Judgement : MonoBehaviour
 
     void Start()
     {
+        score = 0;
+        bestScore = PlayerPrefs.GetInt("M2_Score", 0);
         cur_score.text = "Score: 0";
+        best_score.text = $"Best: {bestScore}";
         ResetRoundState();
     }
 

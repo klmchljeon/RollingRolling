@@ -28,6 +28,8 @@ public class M1_GameOverSceneChange : MonoBehaviour
         if (M1_Score.score > M1_Score.bestscore)
         {
             M1_Score.bestscore = M1_Score.score;
+            PlayerPrefs.SetInt("M1_Score", M1_Score.bestscore);
+            PlayerPrefs.Save();
         }
 
         SceneManager.LoadScene("M1_GameOverScene");

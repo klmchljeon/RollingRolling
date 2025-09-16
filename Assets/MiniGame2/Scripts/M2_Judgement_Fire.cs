@@ -36,7 +36,11 @@ public partial class M2_Judgement : MonoBehaviour
             score += earned;
 
             cur_score.text = $"Score: {score}";
-            //베스트 스코어 갱신 로직
+            if (bestScore < score)
+            {
+                bestScore = score;
+                best_score.text = $"Best: {bestScore}";
+            }
 
             //Debug.Log($"Fire Hit! 타겟: {target.targetObject.name}, diff: {realDiff:F2}°, 점수: +{earned}");
 
